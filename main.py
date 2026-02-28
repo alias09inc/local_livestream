@@ -1,8 +1,8 @@
-from core.realtime_transcriber import run_realtime_transcription
+from core.gradio_server import run_gradio_server
 
 
 def main():
-    run_realtime_transcription()
+    run_gradio_server()
 
 
 if __name__ == "__main__":

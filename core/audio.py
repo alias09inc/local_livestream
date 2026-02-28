@@ -9,7 +9,13 @@ from collections import deque
 from typing import Optional
 
 import numpy as np
-import sounddevice as sd
+
+try:
+    import sounddevice as sd
+except OSError:
+    sd = None
+except ImportError:
+    sd = None
 
 logger = logging.getLogger(__name__)
 
@@ -62,6 +68,12 @@ class AudioCapture:
 
     def recorder_loop(self) -> None:
         """Capture loop: segments utterances based on trailing silence."""
+        if sd is None:
+            raise RuntimeError(
+                "sounddevice/PortAudio is not available. "
+                "Use the Gradio server mode on WSL."
+            )
+
         silence_counter = 0
         logger.info("Opening microphone stream (sample_rate=%s)", self.sample_rate)
 
