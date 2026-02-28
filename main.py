@@ -1,5 +1,8 @@
+from core.realtime_transcriber import run_realtime_transcription
+
+
 def main():
-    print("Hello from local-livestream!")
+    run_realtime_transcription()
 
 
 if __name__ == "__main__":
